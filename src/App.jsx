@@ -47,7 +47,7 @@ async function dbDelete(id) {
 }
 
 // ── AI ────────────────────────────────────────────────────────────────────
-async function callClaude(prompt) {
+async function callClaude(prompt, type = "score") {
   const res = await fetch(
     `${SUPABASE_URL}/functions/v1/claude`,
     {
@@ -57,7 +57,7 @@ async function callClaude(prompt) {
         apikey: SUPABASE_ANON,
         Authorization: `Bearer ${SUPABASE_ANON}`,
       },
-      body: JSON.stringify({ prompt }),
+      body: JSON.stringify({ prompt, type }),
     }
   );
 
@@ -73,7 +73,7 @@ async function getCategories(cards) {
   const txt = await callClaude(`Tu es un expert en classification pédagogique. Voici des questions de flashcards :
 ${list}
 Assigne une catégorie précise à chaque carte (sous-catégories si toutes similaires).
-Retourne UNIQUEMENT un JSON valide sans markdown : [{"id":0,"category":"..."}]`);
+Retourne UNIQUEMENT un JSON valide sans markdown : [{"id":0,"category":"..."}]`, "categorize");
   try { return JSON.parse(txt.replace(/```json|```/g, "").trim()); }
   catch { return []; }
 }
