@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 
 const SUPABASE_URL = "https://vkyzvgdtatovftqrdrdu.supabase.co";
-const SUPABASE_ANON = "TA_CLE_ANON_ICI";
+const SUPABASE_ANON = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InZreXp2Z2R0YXRvdmZ0cXJkcmR1Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzE3NTM4NjIsImV4cCI6MjA4NzMyOTg2Mn0.zNLbsYNeZj26IRWmjLsVAy8NRy4py88Doj7pEkfeIjg";
 
 const sbHeaders = {
   apikey: SUPABASE_ANON,
