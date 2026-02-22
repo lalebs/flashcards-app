@@ -72,7 +72,8 @@ async function getCategories(cards) {
   const list = cards.map((c, i) => `${i + 1}. Q: ${c.question}`).join("\n");
   const txt = await callClaude(`Tu es un expert en classification pédagogique. Voici des questions de flashcards :
 ${list}
-Assigne une catégorie précise à chaque carte (sous-catégories si toutes similaires).
+Assigne une catégorie indépendante à chaque carte selon son contenu propre.
+Si plusieurs cartes appartiennent au même domaine large, affine leurs catégories pour les distinguer.
 Retourne UNIQUEMENT un JSON valide sans markdown : [{"id":0,"category":"..."}]`, "categorize");
   try { return JSON.parse(txt.replace(/```json|```/g, "").trim()); }
   catch { return []; }
